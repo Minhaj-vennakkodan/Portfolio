@@ -205,7 +205,7 @@ export default function Projects() {
           {/* Project Interactive Widget Right */}
           <div
             id="fintrack-demo"
-            className="glass-panel"
+            className="glass-panel fintrack-widget"
             style={{
               padding: '1.75rem',
               borderRadius: '16px',
@@ -508,6 +508,10 @@ export default function Projects() {
           .project-grid-layout {
             padding: 1.25rem !important;
             gap: 1.75rem !important;
+          }
+          .fintrack-widget {
+            padding: 1rem !important;
+            gap: 1.25rem !important;
           }
           .features-grid {
             grid-template-columns: 1fr !important;

@@ -95,7 +95,7 @@ export default function Projects() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-panel"
+          className="glass-panel project-grid-layout"
           style={{
             display: 'grid',
             gridTemplateColumns: '1.2fr 1fr',
@@ -105,7 +105,6 @@ export default function Projects() {
             background: 'linear-gradient(135deg, rgba(11, 21, 40, 0.4) 0%, rgba(3, 7, 18, 0.7) 100%)',
             border: '1px solid rgba(255, 255, 255, 0.05)',
           }}
-          className="project-grid-layout"
         >
           {/* Project Details Left */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -189,11 +188,9 @@ export default function Projects() {
                 <ArrowUpRight size={16} />
               </button>
               <a
-                href="#github-code"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Redirecting to GitHub Repository: (Simulated: https://github.com/minhaj/fintrack)");
-                }}
+                href="https://github.com/Minhaj-vennakkodan/expense-tracker"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-secondary"
               >
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">

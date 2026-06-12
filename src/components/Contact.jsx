@@ -42,22 +42,50 @@ export default function Contact() {
       return;
     }
 
-    // Submit Simulation
+    // Submit Actual Request
     setStatus('sending');
-    addLog(`Initiating HTTP POST request to /api/contact...`, 'info');
-    addLog(`Headers: { "Content-Type": "application/json" }`, 'info');
-    addLog(`Payload: ${JSON.stringify({ name: form.name, email: form.email, subject: form.subject }, null, 2)}`, 'info');
+    addLog(`Initiating HTTP POST request to https://api.web3forms.com/submit...`, 'info');
+    addLog(`Headers: { "Content-Type": "application/json", "Accept": "application/json" }`, 'info');
+    addLog(`Payload: ${JSON.stringify({
+      access_key: "b1b7725e-104e-4cae-94f3-28040d210251",
+      name: form.name,
+      email: form.email,
+      subject: form.subject,
+      message: form.message
+    }, null, 2)}`, 'info');
 
-    setTimeout(() => {
-      addLog(`Connecting to SMTP relay server...`, 'info');
-    }, 500);
-
-    setTimeout(() => {
-      addLog(`Status: 200 OK. Message queued for delivery.`, 'success');
-      addLog(`Email successfully routed to minhaj@portfolio.dev`, 'success');
-      setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        access_key: "b1b7725e-104e-4cae-94f3-28040d210251",
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        message: form.message
+      })
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        if (response.ok && data.success) {
+          addLog(`Status: 200 OK. Message successfully sent!`, 'success');
+          addLog(`Email successfully routed to shanuvennakkodan@gmail.com via Web3Forms.`, 'success');
+          setStatus('success');
+          setForm({ name: '', email: '', subject: '', message: '' });
+        } else {
+          addLog(`Error: ${data.message || 'Submission failed.'}`, 'error');
+          setStatus('error');
+          setErrorMsg(data.message || 'Something went wrong. Please try again.');
+        }
+      })
+      .catch((error) => {
+        addLog(`Network Error: ${error.message}`, 'error');
+        setStatus('error');
+        setErrorMsg('Network error occurred. Please check your connection and try again.');
+      });
   };
 
   return (

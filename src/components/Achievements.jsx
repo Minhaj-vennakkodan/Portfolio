@@ -49,7 +49,7 @@ const stats = [
   {
     icon: Award,
     title: 'Internship Experience',
-    target: '3',
+    target: '9',
     suffix: '+ Months',
     desc: 'Direct development experience building functional production client features.',
     color: '#8b5cf6',

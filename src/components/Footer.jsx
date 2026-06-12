@@ -33,7 +33,7 @@ export default function Footer() {
       ),
       href: '#github',
       name: 'GitHub',
-      link: 'https://github.com/minhaj'
+      link: 'https://github.com/Minhaj-vennakkodan'
     },
     {
       icon: ({ size }) => (
@@ -45,7 +45,7 @@ export default function Footer() {
       name: 'LinkedIn',
       link: 'https://linkedin.com/in/minhaj'
     },
-    { icon: Mail, href: '#email', name: 'Email', link: 'mailto:minhaj@portfolio.dev' },
+    { icon: Mail, href: '#email', name: 'Email', link: 'mailto:shanuvennakkodan@gmail.com' },
   ];
 
   return (

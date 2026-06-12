@@ -159,6 +159,7 @@ export default function Projects() {
                 Key Features
               </h4>
               <div
+                className="features-grid"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(2, 1fr)',
@@ -176,7 +177,7 @@ export default function Projects() {
             </div>
 
             {/* CTAs */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <div className="project-ctas" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
               <button
                 onClick={() => {
                   const el = document.getElementById('fintrack-demo');
@@ -501,6 +502,23 @@ export default function Projects() {
             grid-template-columns: 1fr !important;
             gap: 2.5rem !important;
             padding: 2rem !important;
+          }
+        }
+        @media (max-width: 576px) {
+          .project-grid-layout {
+            padding: 1.25rem !important;
+            gap: 1.75rem !important;
+          }
+          .features-grid {
+            grid-template-columns: 1fr !important;
+            gap: 0.6rem !important;
+          }
+          .project-ctas {
+            flex-direction: column !important;
+          }
+          .project-ctas a, .project-ctas button {
+            width: 100% !important;
+            justify-content: center !important;
           }
         }
       `}</style>

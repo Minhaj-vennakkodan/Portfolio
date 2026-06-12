@@ -43,7 +43,7 @@ export default function Footer() {
       ),
       href: '#linkedin',
       name: 'LinkedIn',
-      link: 'https://linkedin.com/in/minhaj'
+      link: 'https://www.linkedin.com/in/minhaj-vennakkodan'
     },
     { icon: Mail, href: '#email', name: 'Email', link: 'mailto:shanuvennakkodan@gmail.com' },
   ];

@@ -85,7 +85,6 @@ export default function Projects() {
     'AI Resume Builder',
     'ATS Compatibility Checker',
     'AI Cover Letter Writer',
-    'Auto Portfolio Generator',
     'ATS-Compliant PDF Export',
     'Interactive Analytics'
   ];

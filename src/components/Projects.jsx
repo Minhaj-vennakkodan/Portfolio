@@ -1,10 +1,26 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, CheckCircle2, Plus, Trash2, PieChart, DollarSign, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { 
+  ExternalLink, 
+  CheckCircle2, 
+  Plus, 
+  Trash2, 
+  PieChart, 
+  DollarSign, 
+  ArrowUpRight, 
+  ArrowDownRight,
+  Sparkles,
+  FileText,
+  Globe,
+  Brain,
+  RefreshCw,
+  AlertCircle,
+  Cpu
+} from 'lucide-react';
 
 
 export default function Projects() {
-  // FinTrack Mock Interactive Widget State
+  // --- FinTrack Mock Interactive Widget State ---
   const [transactions, setTransactions] = useState([
     { id: 1, text: 'Freelance Project', amount: 1200, type: 'income', category: 'Job' },
     { id: 2, text: 'Monthly Rent', amount: -650, type: 'expense', category: 'Housing' },
@@ -40,12 +56,11 @@ export default function Projects() {
     setTransactions(transactions.filter((tx) => tx.id !== id));
   };
 
-  // Calculations
+  // FinTrack Calculations
   const income = transactions.filter((tx) => tx.amount > 0).reduce((acc, tx) => acc + tx.amount, 0);
   const expense = Math.abs(transactions.filter((tx) => tx.amount < 0).reduce((acc, tx) => acc + tx.amount, 0));
   const balance = income - expense;
 
-  // Category chart breakdown (expenses only)
   const categoryTotals = transactions
     .filter((tx) => tx.amount < 0)
     .reduce((acc, tx) => {
@@ -55,13 +70,24 @@ export default function Projects() {
 
   const totalExpenseAmount = Object.values(categoryTotals).reduce((a, b) => a + b, 0) || 1;
 
-  const features = [
+  const fintrackFeatures = [
     'Dashboard Overview',
     'Income Tracking',
     'Expense Management',
     'Analytics Charts',
     'PDF Export',
     'Responsive Design',
+  ];
+
+
+
+  const careerCraftFeatures = [
+    'AI Resume Builder',
+    'ATS Compatibility Checker',
+    'AI Cover Letter Writer',
+    'Auto Portfolio Generator',
+    'ATS-Compliant PDF Export',
+    'Interactive Analytics'
   ];
 
   return (
@@ -89,7 +115,306 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Project Card */}
+        {/* ================= PROJECT 1: CareerCraft AI ================= */}
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="glass-panel project-grid-layout"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1.2fr 1fr',
+            gap: '3rem',
+            padding: '3rem',
+            textAlign: 'left',
+            background: 'linear-gradient(135deg, rgba(20, 10, 40, 0.3) 0%, rgba(3, 7, 18, 0.8) 100%)',
+            border: '1px solid rgba(139, 92, 246, 0.1)',
+            marginBottom: '4rem',
+          }}
+        >
+          {/* Project Details Left */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
+              {/* Badge */}
+              <div
+                style={{
+                  display: 'inline-block',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '9999px',
+                  background: 'rgba(139, 92, 246, 0.1)',
+                  border: '1px solid rgba(139, 92, 246, 0.2)',
+                  color: '#a78bfa',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  marginBottom: '1rem',
+                }}
+              >
+                AI SaaS Application
+              </div>
+
+              {/* Title & Description */}
+              <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }} className="text-gradient">
+                CareerCraft AI
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                An AI-powered SaaS application designed to empower job seekers by turning their career details into professional, ATS-friendly resumes and stunning, self-hosted personal portfolio websites. Features real-time AI resume enhancements and comprehensive ATS compatibility reports.
+              </p>
+
+              {/* Tech Badges */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
+                {['React.js', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Google Gemini API', 'Node.js', 'Express.js', 'MongoDB'].map((tech) => (
+                  <span
+                    key={tech}
+                    style={{
+                      padding: '0.35rem 0.8rem',
+                      borderRadius: '6px',
+                      background: 'rgba(139, 92, 246, 0.03)',
+                      border: '1px solid rgba(139, 92, 246, 0.1)',
+                      fontSize: '0.8rem',
+                      color: '#a78bfa',
+                      fontWeight: 500,
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Features List */}
+              <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
+                Key Features
+              </h4>
+              <div
+                className="features-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '0.75rem 1.5rem',
+                  marginBottom: '2.5rem',
+                }}
+              >
+                {careerCraftFeatures.map((feature) => (
+                  <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <CheckCircle2 size={16} style={{ color: 'var(--accent-purple)', flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="project-ctas" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+              <a
+                href="https://career-craftai.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{
+                  background: 'linear-gradient(135deg, var(--accent-purple) 0%, #6d28d9 100%)',
+                  boxShadow: '0 4px 20px rgba(139, 92, 246, 0.3)',
+                }}
+              >
+                Live Website
+                <ArrowUpRight size={16} />
+              </a>
+              <a
+                href="https://github.com/Minhaj-vennakkodan/CareerCraft-AI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+                GitHub Code
+              </a>
+            </div>
+          </div>
+
+          {/* Project Visual Showcase Right */}
+          <div
+            className="glass-panel careercraft-widget"
+            style={{
+              padding: '2rem',
+              borderRadius: '16px',
+              border: '1px solid rgba(139, 92, 246, 0.15)',
+              background: 'rgba(10, 8, 20, 0.6)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Background decorative glow */}
+            <div style={{
+              position: 'absolute',
+              top: '-20%',
+              right: '-20%',
+              width: '150px',
+              height: '150px',
+              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 70%)',
+              zIndex: 1,
+            }} />
+
+            {/* Mock Dashboard Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <Brain size={18} style={{ color: 'var(--accent-purple)' }} />
+                <span style={{ fontWeight: 700, fontSize: '0.9rem', letterSpacing: '0.02em', color: '#fff' }}>CareerCraft AI Dashboard</span>
+              </div>
+              <span
+                style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
+                  color: '#34d399',
+                  background: 'rgba(52, 211, 153, 0.1)',
+                  padding: '0.2rem 0.6rem',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(52, 211, 153, 0.2)',
+                }}
+              >
+                ● System Online
+              </span>
+            </div>
+
+            {/* Visual: Resume Mockup with Scanning Effect */}
+            <div style={{ 
+              position: 'relative', 
+              background: 'rgba(0, 0, 0, 0.4)', 
+              borderRadius: '12px', 
+              padding: '1.25rem', 
+              border: '1px solid rgba(255, 255, 255, 0.05)',
+              zIndex: 2,
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+              height: '160px',
+            }}>
+              {/* Animated Scanner Line */}
+              <div style={{
+                position: 'absolute',
+                left: 0,
+                width: '100%',
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, var(--accent-purple), transparent)',
+                boxShadow: '0 0 8px var(--accent-purple)',
+                animation: 'scanLine 3s infinite ease-in-out',
+              }} />
+
+              {/* Mock Resume Content Lines */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--accent-purple), #6d28d9)', flexShrink: 0 }} />
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  <div style={{ width: '40%', height: '8px', borderRadius: '4px', background: 'rgba(255, 255, 255, 0.7)' }} />
+                  <div style={{ width: '25%', height: '6px', borderRadius: '3px', background: 'rgba(255, 255, 255, 0.3)' }} />
+                </div>
+              </div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.25rem' }}>
+                <div style={{ width: '90%', height: '6px', borderRadius: '3px', background: 'rgba(255, 255, 255, 0.15)' }} />
+                <div style={{ width: '85%', height: '6px', borderRadius: '3px', background: 'rgba(255, 255, 255, 0.15)' }} />
+                <div style={{ width: '50%', height: '6px', borderRadius: '3px', background: 'rgba(255, 255, 255, 0.15)' }} />
+              </div>
+
+              {/* Floating Gemini Badge */}
+              <div style={{
+                position: 'absolute',
+                bottom: '12px',
+                right: '12px',
+                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(109, 40, 217, 0.15) 100%)',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
+                padding: '0.25rem 0.5rem',
+                borderRadius: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                fontSize: '0.65rem',
+                color: '#c084fc',
+                fontWeight: 600,
+              }}>
+                <Sparkles size={10} />
+                Gemini Optimizer
+              </div>
+            </div>
+
+            {/* Visual: ATS Score Circular Progress Card */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '1.25rem', 
+              background: 'rgba(255, 255, 255, 0.02)', 
+              borderRadius: '12px', 
+              padding: '1rem', 
+              border: '1px solid rgba(255, 255, 255, 0.04)',
+              zIndex: 2 
+            }}>
+              {/* SVG Circle Progress */}
+              <div style={{ position: 'relative', width: '64px', height: '64px', flexShrink: 0 }}>
+                <svg width="64" height="64" viewBox="0 0 64 64" style={{ transform: 'rotate(-90deg)' }}>
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="28"
+                    fill="transparent"
+                    stroke="rgba(255, 255, 255, 0.05)"
+                    strokeWidth="4"
+                  />
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="28"
+                    fill="transparent"
+                    stroke="var(--accent-purple)"
+                    strokeWidth="4"
+                    strokeDasharray={175.9}
+                    strokeDashoffset={175.9 - (175.9 * 94) / 100}
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>94%</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>ATS Compatibility Score</span>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#a78bfa' }}>Excellent Optimization</span>
+                <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Ready for Job Application</span>
+              </div>
+            </div>
+
+            {/* Quick stats tags */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', zIndex: 2 }}>
+              {[
+                { label: 'PDF Format: Validated', icon: FileText, color: '#38bdf8' },
+                { label: 'SEO/Keywords: Matched', icon: CheckCircle2, color: '#34d399' },
+                { label: 'Design: ATS-Friendly', icon: Globe, color: '#a78bfa' }
+              ].map((stat, idx) => (
+                <div key={stat.label} style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.35rem', 
+                  padding: '0.35rem 0.65rem', 
+                  borderRadius: '6px', 
+                  background: 'rgba(255,255,255,0.02)', 
+                  border: '1px solid rgba(255,255,255,0.04)',
+                  fontSize: '0.65rem',
+                  color: 'var(--text-secondary)'
+                }}>
+                  <stat.icon size={12} style={{ color: stat.color }} />
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+
+        {/* ================= PROJECT 2: FinTrack Expense Tracker ================= */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -167,7 +492,7 @@ export default function Projects() {
                   marginBottom: '2.5rem',
                 }}
               >
-                {features.map((feature) => (
+                {fintrackFeatures.map((feature) => (
                   <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <CheckCircle2 size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
                     <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{feature}</span>
@@ -495,8 +820,19 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Media Queries for responsive grid layouts */}
+      {/* Media Queries for responsive grid layouts and animations */}
       <style>{`
+        @keyframes pulseGrad {
+          0%, 100% { opacity: 0.8; }
+          50% { opacity: 1; }
+        }
+        @keyframes scanLine {
+          0%, 100% { top: 0%; }
+          50% { top: 95%; }
+        }
+        .pulse-animation {
+          animation: pulseGrad 2s infinite ease-in-out;
+        }
         @media (max-width: 992px) {
           .project-grid-layout {
             grid-template-columns: 1fr !important;
@@ -509,7 +845,7 @@ export default function Projects() {
             padding: 1.25rem !important;
             gap: 1.75rem !important;
           }
-          .fintrack-widget {
+          .fintrack-widget, .careercraft-widget {
             padding: 1rem !important;
             gap: 1.25rem !important;
           }
